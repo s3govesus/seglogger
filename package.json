@@ -1,0 +1,28 @@
+{
+  "name": "seglogger",
+  "version": "0.1.1",
+  "description": "",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/s3govesus/seglogger.git"
+  },
+  "author": "Adam S. Underwood",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/s3govesus/seglogger/issues"
+  },
+  "homepage": "https://github.com/s3govesus/seglogger#readme",
+  "dependencies": {
+    "chalk": "4.1.2",
+    "segmisc": "github:s3govesus/segmisc"
+  },
+  "devDependencies": {
+    "eslint": "^8.3.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.25.3"
+  }
+}
