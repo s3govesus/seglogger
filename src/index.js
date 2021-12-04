@@ -51,33 +51,33 @@ exports.log = (str, options) => {
       type = `  ERROR  `;
       break;
     case `exception`:
-      r = 191;
+      r = 255;
       g = 31;
-      b = 191;
+      b = 255;
       type = `EXCEPTION`;
       break;
     case `attempt`:
-      r = 191;
-      g = 191;
+      r = 255;
+      g = 255;
       b = 31;
       type = ` ATTEMPT `;
       break;
     case `success`:
-      r = 63;
+      r = 31;
       g = 255;
-      b = 63;
+      b = 31;
       type = ` SUCCESS `;
       break;
     case `info`:
-      r = 127;
-      g = 127;
+      r = 75;
+      g = 75;
       b = 255;
       type = `  INFO   `;
       break;
     default:
-      r = 127;
-      g = 127;
-      b = 127;
+      r = 191;
+      g = 191;
+      b = 191;
       options.showType = false;
       break;
   }

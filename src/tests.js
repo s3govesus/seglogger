@@ -89,3 +89,9 @@ function testLogInfo() {
   log(str, options);
 }
 testLogInfo();
+
+function testLogGeneric() {
+  let str = `This is a rather generic test. It accomplishes very little with its existence.`;
+  log(str);
+}
+testLogGeneric();
