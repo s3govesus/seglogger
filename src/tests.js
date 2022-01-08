@@ -95,3 +95,18 @@ function testLogGeneric() {
   log(str);
 }
 testLogGeneric();
+
+function testLogNothing() {
+  let str = `This is a test that shouldn't have anything appended to the front of it.`;
+  let options = {
+    type: `none`,
+    showTimestamp: false,
+    showPID: false,
+    showType: false,
+    db: undefined,
+    dbType: `none`,
+    dbSync: false,
+  };
+  log(str, options);
+}
+testLogNothing();

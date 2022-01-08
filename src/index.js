@@ -1,6 +1,6 @@
 const chalk = require(`chalk`);
 
-const { timestampToDate } = require(`segmisc`);
+const { timestampToDate, toBoolean } = require(`segmisc`);
 
 /******************************************************************************/
 
@@ -12,6 +12,8 @@ const { timestampToDate } = require(`segmisc`);
 //   db: undefined, // the connection object for whatever database you're using if you're logging the messages into a database
 //   dbType: `none`, // the type of database you're using if you're logging the messages into a database - possibilites: `mongodb`, `mysql`
 //   dbSync: false, // whether or not to perform database logging synchronously (true) or asynchronously (false)
+//   dbOnly: false, // whether to only log the data to a database and ignore the console
+//   consoleOnly: false, // whether to only log the data to a console, despite possibly being provided database details
 // };
 exports.log = (str, options) => {
   // fill in the options with defaults where necessary
@@ -23,14 +25,18 @@ exports.log = (str, options) => {
     db: undefined,
     dbType: `none`,
     dbSync: false,
+    dbOnly: false,
+    consoleOnly: false,
   };
   options.type = options.type !== undefined ? options.type : `generic`;
-  options.showTimestamp = options.showTimestamp !== undefined ? options.showTimestamp : true;
-  options.showPID = options.showPID !== undefined ? options.showPID : false;
-  options.showType = options.showType !== undefined ? options.showType : false;
+  options.showTimestamp = options.showTimestamp !== undefined ? toBoolean(options.showTimestamp) : true;
+  options.showPID = options.showPID !== undefined ? toBoolean(options.showPID) : false;
+  options.showType = options.showType !== undefined ? toBoolean(options.showType) : false;
   // skip options.db as the default is undefined
   options.dbType = options.dbType !== undefined ? options.dbType : `none`;
-  options.dbSync = options.dbSync !== undefined ? options.dbSync : false;
+  options.dbSync = options.dbSync !== undefined ? toBoolean(options.dbSync) : false;
+  options.dbOnly = options.dbOnly !== undefined ? toBoolean(options.dbOnly) : false;
+  options.consoleOnly = options.consoleOnly !== undefined ? toBoolean(options.consoleOnly) : false;
 
   // determine what color the message is based on the log type and the text for the type
   let r = 0;
@@ -85,15 +91,40 @@ exports.log = (str, options) => {
   // TODO implement options to show less of the timestamp's parts - seconds, year, month, date, etc...
 
   // format the string with various elements depending on the provided options
+  // TODO implement dbOnly
   let formattedStr = ``;
+  let firstStr;
   if (options.showTimestamp === true) {
-    formattedStr += ` ${timestampToDate()} ¦`;
+    if (firstStr === undefined) {
+      firstStr = `timestamp`;
+    }
+    if (firstStr === `timestamp`) {
+      formattedStr += `${timestampToDate()} ¦`;
+    } else {
+      formattedStr += ` ${timestampToDate()} ¦`;
+    }
   }
   if (options.showPID === true) {
-    formattedStr += ` ${process.pid} ¦`;
+    if (firstStr === undefined) {
+      console.log(`fisrStr undefined`);
+      firstStr = `pid`;
+    }
+    if (firstStr === `pid`) {
+      console.log(`firstStr true`);
+      formattedStr += `${process.pid} ¦`;
+    } else {
+      formattedStr += ` ${process.pid} ¦`;
+    }
   }
   if (options.showType === true) {
-    formattedStr += ` ${type} ¦`;
+    if (firstStr === undefined) {
+      firstStr = `type`;
+    }
+    if (firstStr === `type`) {
+      formattedStr += `${type} ¦`;
+    } else {
+      formattedStr += ` ${type} ¦`;
+    }
   }
   if (options.showTimestamp === false && options.showPID === false && options.showType === false) {
     formattedStr = `${str}`;
@@ -105,4 +136,5 @@ exports.log = (str, options) => {
   console.log(chalk.rgb(r, g, b)(formattedStr));
 
   // TODO implement database logging
+  // TODO implement consoleOnly
 };
