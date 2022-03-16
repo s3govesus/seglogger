@@ -45,36 +45,48 @@ exports.log = (str, options) => {
   let type = ``;
   switch (options.type.toLowerCase()) {
     case `alert`:
+    case `!`:
+    case `warning`:
+    case `warn`:
       r = 255;
       g = 127;
       b = 31;
       type = `  ALERT  `;
       break;
     case `error`:
+    case `err`:
+    case `fail`:
+    case `failure`:
       r = 255;
       g = 31;
       b = 31;
       type = `  ERROR  `;
       break;
     case `exception`:
+    case `ex`:
       r = 255;
       g = 31;
       b = 255;
       type = `EXCEPTION`;
       break;
     case `attempt`:
+    case `try`:
       r = 255;
       g = 255;
       b = 31;
       type = ` ATTEMPT `;
       break;
     case `success`:
+    case `ok`:
+    case `okay`:
+    case `confirm`:
       r = 31;
       g = 255;
       b = 31;
       type = ` SUCCESS `;
       break;
     case `info`:
+    case `inf`:
       r = 75;
       g = 75;
       b = 255;

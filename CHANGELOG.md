@@ -1,5 +1,8 @@
 ## CHANGELOG
 
+### 0.1.4: more flexible types
+- made the `type` option a little more flexible, giving some of the types multiple possible string values to match them with
+
 ### 0.1.3: db options / space fix
 - fixed an issue where a space was often appended to the start of strings
 - added options for only logging to a database or only logging to a console, despite possibly being provided database details - not yet fully implemented
