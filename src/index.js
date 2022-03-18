@@ -87,8 +87,8 @@ exports.log = (str, options) => {
       break;
     case `info`:
     case `inf`:
-      r = 75;
-      g = 75;
+      r = 100;
+      g = 100;
       b = 255;
       type = `  INFO   `;
       break;
@@ -149,4 +149,103 @@ exports.log = (str, options) => {
 
   // TODO implement database logging
   // TODO implement consoleOnly
+};
+
+/******************************************************************************/
+
+exports.logAlert = (str, options) => {
+  if (options === undefined || typeof options !== `object`) {
+    options = {
+      type: `alert`,
+    };
+  } else {
+    options.type = `alert`;
+  }
+
+  this.log(str, options);
+};
+
+/******************************************************************************/
+
+// this is identical to logAlert()
+exports.logWarning = (str, options) => {
+  if (options === undefined || typeof options !== `object`) {
+    options = {
+      type: `alert`,
+    };
+  } else {
+    options.type = `alert`;
+  }
+
+  this.log(str, options);
+};
+
+/******************************************************************************/
+
+exports.logError = (str, options) => {
+  if (options === undefined || typeof options !== `object`) {
+    options = {
+      type: `error`,
+    };
+  } else {
+    options.type = `error`;
+  }
+
+  this.log(str, options);
+};
+
+/******************************************************************************/
+
+exports.logException = (str, options) => {
+  if (options === undefined || typeof options !== `object`) {
+    options = {
+      type: `exception`,
+    };
+  } else {
+    options.type = `exception`;
+  }
+
+  this.log(str, options);
+};
+
+/******************************************************************************/
+
+exports.logAttempt = (str, options) => {
+  if (options === undefined || typeof options !== `object`) {
+    options = {
+      type: `attempt`,
+    };
+  } else {
+    options.type = `attempt`;
+  }
+
+  this.log(str, options);
+};
+
+/******************************************************************************/
+
+exports.logSuccess = (str, options) => {
+  if (options === undefined || typeof options !== `object`) {
+    options = {
+      type: `success`,
+    };
+  } else {
+    options.type = `success`;
+  }
+
+  this.log(str, options);
+};
+
+/******************************************************************************/
+
+exports.logInfo = (str, options) => {
+  if (options === undefined || typeof options !== `object`) {
+    options = {
+      type: `info`,
+    };
+  } else {
+    options.type = `info`;
+  }
+
+  this.log(str, options);
 };
