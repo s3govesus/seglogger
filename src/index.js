@@ -15,7 +15,7 @@ const { timestampToDate, toBoolean } = require(`segmisc`);
 //   dbOnly: false, // whether to only log the data to a database and ignore the console
 //   consoleOnly: false, // whether to only log the data to a console, despite possibly being provided database details
 // };
-exports.log = (str, options) => {
+function log(str, options) {
   // fill in the options with defaults where necessary
   options = options !== undefined ? options : {
     type: `generic`,
@@ -149,11 +149,11 @@ exports.log = (str, options) => {
 
   // TODO implement database logging
   // TODO implement consoleOnly
-};
+}
 
 /******************************************************************************/
 
-exports.logAlert = (str, options) => {
+function logAlert(str, options) {
   if (options === undefined || typeof options !== `object`) {
     options = {
       type: `alert`,
@@ -163,26 +163,12 @@ exports.logAlert = (str, options) => {
   }
 
   this.log(str, options);
-};
+}
+const logWarning = logAlert(); // an alternative name for the logAlert function
 
 /******************************************************************************/
 
-// this is identical to logAlert()
-exports.logWarning = (str, options) => {
-  if (options === undefined || typeof options !== `object`) {
-    options = {
-      type: `alert`,
-    };
-  } else {
-    options.type = `alert`;
-  }
-
-  this.log(str, options);
-};
-
-/******************************************************************************/
-
-exports.logError = (str, options) => {
+function logError(str, options) {
   if (options === undefined || typeof options !== `object`) {
     options = {
       type: `error`,
@@ -192,11 +178,11 @@ exports.logError = (str, options) => {
   }
 
   this.log(str, options);
-};
+}
 
 /******************************************************************************/
 
-exports.logException = (str, options) => {
+function logException(str, options) {
   if (options === undefined || typeof options !== `object`) {
     options = {
       type: `exception`,
@@ -206,11 +192,11 @@ exports.logException = (str, options) => {
   }
 
   this.log(str, options);
-};
+}
 
 /******************************************************************************/
 
-exports.logAttempt = (str, options) => {
+function logAttempt(str, options) {
   if (options === undefined || typeof options !== `object`) {
     options = {
       type: `attempt`,
@@ -220,11 +206,11 @@ exports.logAttempt = (str, options) => {
   }
 
   this.log(str, options);
-};
+}
 
 /******************************************************************************/
 
-exports.logSuccess = (str, options) => {
+function logSuccess(str, options) {
   if (options === undefined || typeof options !== `object`) {
     options = {
       type: `success`,
@@ -234,11 +220,11 @@ exports.logSuccess = (str, options) => {
   }
 
   this.log(str, options);
-};
+}
 
 /******************************************************************************/
 
-exports.logInfo = (str, options) => {
+function logInfo(str, options) {
   if (options === undefined || typeof options !== `object`) {
     options = {
       type: `info`,
@@ -248,4 +234,17 @@ exports.logInfo = (str, options) => {
   }
 
   this.log(str, options);
+}
+
+/******************************************************************************/
+
+module.exports = {
+  log,
+  logAlert,
+  logWarning,
+  logError,
+  logException,
+  logAttempt,
+  logSuccess,
+  logInfo,
 };

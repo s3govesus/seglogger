@@ -1,5 +1,8 @@
 ## CHANGELOG
 
+### 0.2.2: cleaning
+- cleaned up code a bit
+
 ### 0.2.1: shorthand functions
 - implemented `logInfo()`, `logSuccess()`, `logAttempt()`, `logAlert()` / `logWarning()` (these two are the same function), `logError()`, and `logException()` shorthand functions
 - slightly lightened the colors for logging info types
