@@ -162,9 +162,13 @@ function logAlert(str, options) {
     options.type = `alert`;
   }
 
-  this.log(str, options);
+  log(str, options);
 }
-const logWarning = logAlert(); // an alternative name for the logAlert function
+
+// effectively an alias for the logAlert function
+function logWarning(str, options) {
+  return logAlert(str, options);
+}
 
 /******************************************************************************/
 
@@ -177,7 +181,7 @@ function logError(str, options) {
     options.type = `error`;
   }
 
-  this.log(str, options);
+  log(str, options);
 }
 
 /******************************************************************************/
@@ -191,7 +195,7 @@ function logException(str, options) {
     options.type = `exception`;
   }
 
-  this.log(str, options);
+  log(str, options);
 }
 
 /******************************************************************************/
@@ -205,7 +209,7 @@ function logAttempt(str, options) {
     options.type = `attempt`;
   }
 
-  this.log(str, options);
+  log(str, options);
 }
 
 /******************************************************************************/
@@ -219,7 +223,7 @@ function logSuccess(str, options) {
     options.type = `success`;
   }
 
-  this.log(str, options);
+  log(str, options);
 }
 
 /******************************************************************************/
@@ -233,7 +237,7 @@ function logInfo(str, options) {
     options.type = `info`;
   }
 
-  this.log(str, options);
+  log(str, options);
 }
 
 /******************************************************************************/

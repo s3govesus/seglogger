@@ -1,5 +1,9 @@
 ## CHANGELOG
 
+### 0.2.3: various fixes
+- fixed issues where `this.log()` calls were no longer valid with the way the code was restructured in 0.2.2
+- fixed an issue where the `logWarning()` function was failing to call properly
+
 ### 0.2.2: cleaning
 - cleaned up code a bit
 
